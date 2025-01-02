@@ -2,6 +2,7 @@ package dev.eifzed.runnerz;
 
 import dev.eifzed.runnerz.run.Location;
 import dev.eifzed.runnerz.run.Run;
+import dev.eifzed.runnerz.run.RunRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,12 +23,13 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
-	CommandLineRunner runner(){
-		return args -> {
-			Run run = new Run(1, "First Run", LocalDateTime.now(), LocalDateTime.now().plusHours(1), 10, Location.OUTDOOR);
-			log.info("Run "+run);
-		};
-	}
+//	@Bean
+//	CommandLineRunner runner(RunRepository runRepository){
+//		return args -> {
+//			Run run = new Run(1, "First Run", LocalDateTime.now(), LocalDateTime.now().plusHours(1), 10, Location.OUTDOOR);
+//			log.info("Run "+run);
+//			runRepository.createRun(run);
+//		};
+//	}
 
 }

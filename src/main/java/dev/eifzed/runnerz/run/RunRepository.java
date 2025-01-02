@@ -77,4 +77,12 @@ public class RunRepository {
                 list();
     }
 
+    public int count() {
+        return  jdbcClient.
+                sql("select count(*) from run").
+                query(Integer.class).
+                single();
+    }
+
+
 }
