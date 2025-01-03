@@ -3,9 +3,7 @@ package dev.eifzed.runnerz.run;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,25 +32,25 @@ public class RunController {
     }
     @GetMapping("/location/{location}")
     List<Run> getByLocation(@PathVariable Location location) {
-        return runRepository.findByLocation(location);
+        return runRepository.findAllByLocation(location.toString());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void addRun(@Valid @RequestBody Run run) {
-        runRepository.createRun(run);
+        runRepository.save(run);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void updateRun(@PathVariable Integer id, @Valid @RequestBody Run run) {
-        runRepository.updateRun(id, run);
+        runRepository.save(run);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void deleteRun(@PathVariable Integer id) {
-        runRepository.deleteRun(id);
+        runRepository.deleteById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
